@@ -18,7 +18,7 @@ export function ContactForm() {
       return;
     }
     dispatch(
-      AddContact({ name: name.value, number: number.value, id: nanoid() })
+      AddContact({ name: name.value, phone: number.value, id: nanoid() })
     );
 
     e.target.reset();
