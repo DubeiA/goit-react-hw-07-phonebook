@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { SearchByName } from 'redux/contactSlice';
+import { SearchByName } from 'redux/contactsReducer';
 import css from '../Filter/Filter.module.css';
 
 export const Filter = () => {
