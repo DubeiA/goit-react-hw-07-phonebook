@@ -27,7 +27,7 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && <p>Loading tasks...</p>}
+      {isLoading && <p>Loading contacts...</p>}
       {error && <p>{error}</p>}
       {contacts.length > 0 && (
         <ul className={css.list}>
