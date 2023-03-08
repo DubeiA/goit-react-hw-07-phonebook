@@ -24,7 +24,7 @@ export const ContactList = () => {
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-  console.log(contacts);
+
   return (
     <>
       {isLoading && <p>Loading tasks...</p>}
