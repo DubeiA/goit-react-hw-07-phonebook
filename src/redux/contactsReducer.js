@@ -1,30 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts } from './contactOperation';
+import { addContact, fetchContacts } from './contactOperation';
 
 const contactsReducer = createSlice({
   name: 'contacts',
   initialState: {
-    entities: [],
-    isLoading: false,
-    error: null,
+    contacts: {
+      entities: [],
+      isLoading: false,
+      error: null,
+    },
+    filter: '',
   },
   reducers: {
-    AddContact: {
-      reducer(state, action) {
-        console.log(state.entities);
-        state.entities.push(action.payload);
-      },
-      prepare(entities) {
-        return {
-          payload: entities,
-        };
-      },
-    },
     DeleteContact(state, action) {
-      const index = state.entities.findIndex(
+      const index = state.contacts.entities.findIndex(
         userId => userId.id === action.payload
       );
-      state.entities.splice(index, 1);
+      state.contacts.entities.splice(index, 1);
     },
 
     SearchByName: (state, action) => {
@@ -33,10 +25,27 @@ const contactsReducer = createSlice({
   },
   extraReducers: {
     [fetchContacts.fulfilled]: (state, { payload }) => {
-      state.entities = payload;
+      state.contacts.entities = payload;
+      state.contacts.isLoading = false;
     },
     [fetchContacts.pending]: state => {
-      state.isLoading = true;
+      state.contacts.isLoading = true;
+    },
+    [fetchContacts.rejected]: (state, { payload }) => {
+      state.contacts.isLoading = false;
+      state.contacts.error = payload;
+    },
+    [addContact.fulfilled]: {
+      reducer(state, action) {
+        console.log(state.contacts.entities);
+        state.contacts.entities.push(action.payload);
+      },
+      prepare(entities) {
+        console.log(entities);
+        return {
+          payload: entities,
+        };
+      },
     },
   },
 });
