@@ -18,9 +18,15 @@ export function ContactForm() {
       alert(`${name.value} is already in your contact`);
       return;
     }
-    dispatch(
-      addContact({ name: name.value, phone: number.value, id: nanoid() })
-    );
+
+    const data = {
+      createdAt: new Date().toISOString(),
+      name: name.value,
+      phone: number.value,
+      id: nanoid(),
+    };
+
+    dispatch(addContact(data));
 
     e.target.reset();
   };

@@ -12,17 +12,17 @@ const contactsReducer = createSlice({
     filter: '',
   },
   reducers: {
-    // AddContact: {
-    //   reducer(state, action) {
-    //     console.log(state.contacts.entities);
-    //     state.contacts.entities.push(action.payload);
-    //   },
-    //   prepare(entities) {
-    //     return {
-    //       payload: entities,
-    //     };
-    //   },
-    // },
+    AddContact: {
+      reducer(state, action) {
+        console.log(state.contacts.entities);
+        state.contacts.entities.push(action.payload);
+      },
+      prepare(entities) {
+        return {
+          payload: entities,
+        };
+      },
+    },
     DeleteContact(state, action) {
       const index = state.contacts.entities.findIndex(
         userId => userId.id === action.payload
@@ -46,9 +46,9 @@ const contactsReducer = createSlice({
       state.contacts.isLoading = false;
       state.contacts.error = payload;
     },
-    [addContact.fulfilled]: (state, { payload }) => {
-      // console.log(state.contacts.entities);
-      state.contacts.entities.push(payload);
+    [addContact.fulfilled]: (state, action) => {
+      console.log(state.contacts.entities);
+      state.contacts.entities.push(action.payload);
     },
   },
 });
