@@ -1,7 +1,6 @@
 import css from '../ContactList/ContactList.module.css';
-import { DeleteContact } from 'redux/contactsReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from '../../redux/contactOperation';
+import { fetchContacts, deleteContact } from '../../redux/contactOperation';
 import { useEffect } from 'react';
 import {
   getContacts,
@@ -9,8 +8,6 @@ import {
   getIsLoading,
   getError,
 } from '../../redux/selectors';
-
-// import PropTypes from 'prop-types';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
@@ -40,7 +37,7 @@ export const ContactList = () => {
                 {contact.name} : {contact.phone}
                 <button
                   className={css.item__button}
-                  onClick={() => dispatch(DeleteContact(contact.id))}
+                  onClick={() => dispatch(deleteContact(contact.id))}
                 >
                   Видалити
                 </button>
@@ -52,8 +49,3 @@ export const ContactList = () => {
     </>
   );
 };
-
-// ContactList.propTypes = {
-//   onDeleteContact: PropTypes.func.isRequired,
-//   contacts: PropTypes.array.isRequired,
-// };

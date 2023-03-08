@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-// import { AddContact } from 'redux/contactsReducer';
 import { getContacts } from 'redux/selectors';
 import { addContact } from 'redux/contactOperation';
 import css from '../ContactForm/ContactForm.module.css';
@@ -63,7 +62,3 @@ export function ContactForm() {
     </form>
   );
 }
-
-// ContactForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// }

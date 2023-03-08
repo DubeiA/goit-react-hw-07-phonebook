@@ -26,3 +26,15 @@ export const addContact = createAsyncThunk(
     }
   }
 );
+
+export const deleteContact = createAsyncThunk(
+  'contacts/deleteContacts',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await contactsAPI.deleteContact(id);
+      return response;
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
