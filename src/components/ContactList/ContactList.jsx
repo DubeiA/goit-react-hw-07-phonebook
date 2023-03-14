@@ -38,6 +38,7 @@ export const ContactList = () => {
                 <button
                   className={css.item__button}
                   onClick={() => dispatch(deleteContact(contact.id))}
+                  disabled={isLoading}
                 >
                   Видалити
                 </button>
